@@ -81,5 +81,5 @@ app.use('/users',users);
 
 app.set('port',(3000));
 app.listen(app.get('port'),function () {
-    console.log('My server is started on the prot '+ app.get('port'));
+    console.log('My server is started on the port '+ app.get('port'));
 });
