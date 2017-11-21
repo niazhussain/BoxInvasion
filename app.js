@@ -9,7 +9,7 @@ var  flash=require('connect-flash');
 var session= require('express-session');
 var mongo=require('mongodb');
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/BoxInvension');
+mongoose.connect('mongodb://localhost/BoxInvasion');
 var db=mongoose.connection;
 
 var routes=require('./routes/index');
