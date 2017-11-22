@@ -16,7 +16,6 @@
     "cookies-parser": "*",
     "ejs": "^2.5.7",
     "express": "*",
-    "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",

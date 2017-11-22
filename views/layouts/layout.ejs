@@ -1,1 +1,46 @@
-MAIN LAYOUT
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BoxInvension</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <header class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills float-right">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/logout">logout</a>
+                </li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">BoxInvension</h3>
+    </header>
+    <main role="main">
+
+        <div class="row ">
+            <div class="col-lg-12">
+                {{{body}}}
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; BoxInvension 2017</p>
+    </footer>
+</div> <!-- /container -->
+</body>
+</html>

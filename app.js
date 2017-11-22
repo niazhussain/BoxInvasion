@@ -2,6 +2,7 @@ var express= require('express');
 var path=require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser=require('body-parser');
+var expjs=require('ejs');
 var expressValidator=require('express-validator');
 var passport=require('passport');
 var localStrategy= require('passport-local').Strategy;
@@ -9,8 +10,10 @@ var  flash=require('connect-flash');
 var session= require('express-session');
 var mongo=require('mongodb');
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/BoxInvasion');
+mongoose.connect('mongodb://localhost/loginapp');
 var db=mongoose.connection;
+
+
 
 var routes=require('./routes/index');
 var users=require('./routes/users');
@@ -20,7 +23,7 @@ var app=express();
 
 // setting up view engine to tell the system
 app.set('views',path.join(__dirname,'views'));
-//app.engine('ejs',expjs({defaultLayout:'layout'}));
+//app.engine('handlebars',exphbs({defaultLayout:'layout'}));
 app.set('view engine','ejs');
 
 //BodyParsing Middleware before handlers
@@ -44,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //Express validator
 
-/*app.use(expressValidator({
+app.use(expressValidator({
    errorFormatter:function (param,msg,value) {
        var namespace=param.split('.'),
            root=namespace.shift(),
@@ -59,7 +62,7 @@ app.use(passport.session());
        };
 
    }
-}));*/
+}));
 
 //connecting to flash
 app.use(flash());
@@ -81,4 +84,5 @@ app.use('/users',users);
 app.set('port',(3000));
 app.listen(app.get('port'),function () {
     console.log('My server is started on the port '+ app.get('port'));
+
 });
