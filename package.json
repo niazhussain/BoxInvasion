@@ -1,8 +1,8 @@
 {
-  "name": "loginapp",
+  "name": "BoxInvasion",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "chatApp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,14 +16,9 @@
     "cookies-parser": "*",
     "ejs": "^2.5.7",
     "express": "*",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "*",
-    "express-validator": "*",
-    "mongodb": "*",
-    "mongoose": "*",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*"
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
