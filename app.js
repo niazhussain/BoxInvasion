@@ -1,88 +1,38 @@
-var express= require('express');
-var path=require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser=require('body-parser');
-var expjs=require('ejs');
-var expressValidator=require('express-validator');
-var passport=require('passport');
-var localStrategy= require('passport-local').Strategy;
-var  flash=require('connect-flash');
-var session= require('express-session');
-var mongo=require('mongodb');
-var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/loginapp');
-var db=mongoose.connection;
+var express = require("express");
+var user = require("./routes/users");
+var routes=require("./routes/");
+var http = require("http");
+var path = require("path");
+//var mongo = require('mongodb');
+//var methodOverride = require("method-override");
+var app = express();
+var bodyParser=require("body-parser");
 
-
-
-var routes=require('./routes/index');
-var users=require('./routes/users');
-
-//initiallize the app
-var app=express();
-
-// setting up view engine to tell the system
-app.set('views',path.join(__dirname,'views'));
-//app.engine('handlebars',exphbs({defaultLayout:'layout'}));
-app.set('view engine','ejs');
-
-//BodyParsing Middleware before handlers
+//setting up environments
+app.set("port", process.env.PORT || 8080);
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));//https://stackoverflow.com/questions/29175465/body-parser-extended-option-qs-vs-querystring
-app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
 
-//seting up the statis folder for public access
-app.use(express.static(path.join(__dirname,'public')));
+var MongoClient = require('mongodb').MongoClient;
+var mongoose=require("mongoose");
 
-//setting for session
-app.use(session({
-    secret:'secret',
-    saveUninitialized:true,
-    resave:true
-}));
+var url = "mongodb://localhost:27017/boxinvasion";
 
-//init passport
-
-app.use(passport.initialize());
-app.use(passport.session());
-//Express validator
-
-app.use(expressValidator({
-   errorFormatter:function (param,msg,value) {
-       var namespace=param.split('.'),
-           root=namespace.shift(),
-           formParam=root;
-       while (namespace.length){
-           formParam+='['+namespace.shift()+']';
-       }
-       return{
-           param:formParam,
-           msg:msg,
-           value:value
-       };
-
-   }
-}));
-
-//connecting to flash
-app.use(flash());
-
-//global variables
-app.use(function (req,res,next) {
-    res.locals.success_msg=req.flash('success_msg');
-    res.locals.error_msg=req.flash('error_msg');
-    res.locals.error=req.flash('error');
-    res.locals.user = req.user || null;
-    next();
+global.db=MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    console.log("Database created!");
+   // db.close();
 });
-
-app.use('/',routes);
-app.use('/users',users);
-
 //set port for my application
 
-app.set('port',(3000));
-app.listen(app.get('port'),function () {
-    console.log('My server is started on the port '+ app.get('port'));
+app.set("port",(8080));
+app.listen(app.get("port"),function () {
+    console.log("My server is started on the port "+ app.get("port"));
 
 });
+
+app.get("/", routes.index);//call for main index page
+app.get("/login", routes.index);//call for login page
