@@ -24,6 +24,4 @@ deploy:
   email:
     recipients:
       - niaz.hussain@student.fh-kiel.de
-      - niaz.hussain@student.fh-kiel.de
-    on_success: never # default: change
-    on_failure: always # default: always
+  
