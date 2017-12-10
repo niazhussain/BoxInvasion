@@ -22,6 +22,6 @@ deploy:
    
  notifications:
   email:
-    recipients:
-      - niaz.hussain@student.fh-kiel.de
-  
+       - niaz.hussain@student.fh-kiel.de
+  on_success: always
+  on_failure: always
