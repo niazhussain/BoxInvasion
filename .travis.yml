@@ -1,6 +1,10 @@
 language: node_js
 node_js:
 - '6'
+notifications:
+  email:
+       - niazhussein1990@gmail.com
+
 script: npm run-script ci
 before_script:
 - npm install -g grunt-cli
@@ -20,8 +24,4 @@ deploy:
     tags: true
     
    
- notifications:
-  email:
-       - niaz.hussain@student.fh-kiel.de
-  on_success: always
-  on_failure: always
+ 
