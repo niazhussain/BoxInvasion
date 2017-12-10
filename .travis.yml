@@ -21,8 +21,6 @@ deploy:
     
    
  notifications:
-  template:
-    - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch} in PR <%{pull_request_url}|#%{pull_request_number}> by %{author} %{result} in %{duration}"
   email:
     recipients:
       - niaz.hussain@student.fh-kiel.de
